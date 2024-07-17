@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Exchange Rate</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1 class="text-center mb-5">Exchange Rate</h1>
+
+      <form method="post" class="form-group">
+        <label for="currency">Select a currency:</label>
+        <select name="currency" id="currency" class="form-control">
+          <option value="EUR" {% if selected_currency == 'EUR' %}selected{% endif %}>EUR - Euro</option>
+          <option value="USD" {% if selected_currency == 'USD' %}selected{% endif %}>USD - US Dollar</option>
+          <option value="GBP" {% if selected_currency == 'GBP' %}selected{% endif %}>GBP - British Pound</option>
+          <option value="JPY" {% if selected_currency == 'JPY' %}selected{% endif %}>JPY - Japanese Yen</option>
+        </select>
+        <input type="submit" value="Go" class="btn btn-primary mt-3">
+      </form>
+
+      {% if exchange_rate %}
+        <p id="exchange-rate" class="text-center mt-5">The exchange rate for {{ selected_currency }} to USD is {{ exchange_rate }}</p>
+      {% else %}
+        <p class="text-center mt-5">No exchange rate data available for {{ selected_currency }}</p>
+      {% endif %}
+    </div>
+  </body>
+</html>
